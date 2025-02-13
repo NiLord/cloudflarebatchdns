@@ -49,6 +49,16 @@ def get_zone(domain_name):
        raise Exception(f"Error listing DNS records: {str(e)}")
 
 def update_dns_record(domain, actual_ip):
+    """
+    Updates a DNS record for the specified domain with the specified actual_ip.
+
+    Args:
+    domain (str): The domain name for which the DNS record should be updated.
+    actual_ip (str): The actual IP address that the DNS record should be set to.
+
+    Returns:
+    None
+    """
     try:
         zone = get_zone(domain)
         dns_records = client.dns.records.list(zone_id=zone.id, type="A")
