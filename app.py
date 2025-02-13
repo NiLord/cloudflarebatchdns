@@ -49,7 +49,7 @@ def get_zone(domain_name):
        raise Exception(f"Error listing DNS records: {str(e)}")
 
 def update_dns_record(domain, actual_ip):
-    # try:
+    try:
         zone = get_zone(domain)
         dns_records = client.dns.records.list(zone_id=zone.id, type="A")
 
@@ -63,8 +63,8 @@ def update_dns_record(domain, actual_ip):
             logger.info(f"DNS record for {domain} updated!")
         else:
             logger.info(f"DNS record for {domain} is already up to date")
-    # except Exception as e:
-    #    logger.error(f"Error updating DNS records for {domain}: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error updating DNS records for {domain}: {str(e)}")
 
 ## Main function``
 if __name__ == '__main__':
